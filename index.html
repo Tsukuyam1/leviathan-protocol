@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+
+<title>LEVIATHAN // TRANSMISSÃO RECUPERADA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:#cfcfcf;
+    font-family:'Share Tech Mono', monospace;
+    overflow:hidden;
+    height:100vh;
+}
+
+/* Efeito CRT */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+
+    opacity:0.12;
+}
+
+/* Container */
+
+.container{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+/* Terminal */
+
+.terminal{
+
+    width:100%;
+    max-width:950px;
+    height:90vh;
+
+    background:rgba(0,0,0,0.94);
+
+    border:1px solid #5c0000;
+
+    box-shadow:
+    0 0 15px rgba(255,0,0,0.25),
+    inset 0 0 15px rgba(255,0,0,0.08);
+
+    padding:30px;
+
+    overflow-y:auto;
+}
+
+/* Título */
+
+.glitch{
+
+    color:#ff2f2f;
+
+    font-size:2.3rem;
+
+    text-shadow:
+    0 0 5px #ff0000,
+    0 0 15px #ff0000;
+
+    animation:flicker 2s infinite;
+}
+
+@keyframes flicker{
+
+    0%{opacity:1;}
+    5%{opacity:0.7;}
+    10%{opacity:1;}
+    15%{opacity:0.4;}
+    20%{opacity:1;}
+    100%{opacity:1;}
+
+}
+
+/* Informações */
+
+.status{
+
+    margin-top:20px;
+
+    color:#7a7a7a;
+
+    line-height:1.7;
+}
+
+/* Mensagem */
+
+.message{
+
+    margin-top:40px;
+
+    white-space:pre-line;
+
+    line-height:1.9;
+
+    font-size:1rem;
+}
+
+/* Botões */
+
+button{
+
+    margin-top:30px;
+
+    background:black;
+
+    color:#ff2f2f;
+
+    border:1px solid #ff2f2f;
+
+    padding:12px 24px;
+
+    font-family:'Share Tech Mono', monospace;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    background:#ff2f2f;
+
+    color:black;
+}
+
+/* Área escondida */
+
+.hidden{
+    display:none;
+}
+
+/* Input */
+
+input{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:12px;
+
+    background:black;
+
+    border:1px solid #5c0000;
+
+    color:#ff4040;
+
+    font-family:'Share Tech Mono', monospace;
+}
+
+/* Log secreto */
+
+.log{
+
+    margin-top:40px;
+
+    border-left:2px solid #5c0000;
+
+    padding-left:20px;
+
+    color:#9c9c9c;
+
+    line-height:1.8;
+}
+
+/* Frase final */
+
+.final{
+
+    margin-top:40px;
+
+    color:#ff4040;
+
+    font-size:1.2rem;
+
+    animation:flicker 1.5s infinite;
+}
+
+/* Scroll */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#5c0000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="terminal">
+
+<div class="glitch">
+LEVIATHAN // TRANSMISSÃO RECUPERADA
+</div>
+
+<div class="status">
+
+ORIGEM: DESCONHECIDA<br>
+SETOR: ARQUIPÉLAGO DE ÓRION<br>
+STATUS: SINAL CORROMPIDO<br>
+PRIORIDADE: ÔMEGA
+
+</div>
+
+<div id="message" class="message"></div>
+
+<button id="startBtn" onclick="startTransmission()">
+INICIAR RECUPERAÇÃO DE LOG
+</button>
+
+<div id="passwordSection" class="hidden">
+
+<div style="margin-top:30px;color:#777;">
+ARQUIVO SECUNDÁRIO DETECTADO.<br>
+INSIRA A CHAVE DE ACESSO.
+</div>
+
+<input type="text" id="passwordInput" placeholder="DIGITE A SENHA">
+
+<button onclick="unlockLog()">
+DESBLOQUEAR
+</button>
+
+</div>
+
+<div id="secretLog" class="hidden">
+
+<div class="log">
+
+LOG DE SOBREVIVENTE — FRAGMENTO 04
+
+<br><br>
+
+...se alguém estiver ouvindo isso...
+
+não existe quarentena suficiente.
+
+o capitão abriu a carga.
+
+eles disseram que eram artefatos encontrados perto da borda de Órion.
+
+estávamos errados.
+
+muito errados.
+
+as paredes começaram a pulsar depois da terceira noite.
+
+escutamos vozes vindo dos tubos de ventilação.
+
+alguns desapareceram.
+
+outros voltaram.
+
+mas não eram mais humanos.
+
+o segundo oficial tentou isolar os decks inferiores.
+
+o capitão chamou ele de covarde.
+
+depois as estrelas desapareceram.
+
+eu juro.
+
+o vazio olhou de volta para nós.
+
+se você encontrar o Leviathan...
+
+não deixe eles abrirem as portas.
+
+</div>
+
+<div class="final">
+
+“SE VOCÊ ESTÁ OUVINDO ISTO...<br>
+O LEVIATHAN JÁ ENCONTROU VOCÊ.”
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Áudio -->
+
+<audio id="staticAudio" loop>
+<source src="static.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Texto digitando */
+
+const transmission = `
+
+RECUPERANDO TRANSMISSÃO...
+
+...
+
+...
+
+SINAL ESTABILIZADO.
+
+Se alguém estiver recebendo isto...
+
+não atraquem no Leviathan.
+
+A tripulação não morreu.
+
+Nós ouvimos coisas dentro do casco.
+
+As paredes respiram.
+
+Os corredores mudam durante a noite.
+
+Algo se move entre os decks inferiores.
+
+O capitão continua dizendo que tudo está sob controle.
+
+Ele está mentindo.
+
+Escutamos vozes vindas do lado de fora da nave.
+
+Não olhem pelas janelas.
+
+Por favor...
+
+não respondam às transmissões.
+
+...
+
+Can you hear me, Major Tom?
+
+...
+
+eles estão dentro das paredes.
+
+`;
+
+let i = 0;
+
+function startTransmission(){
+
+    document.getElementById("startBtn").style.display = "none";
+
+    document.getElementById("staticAudio").play();
+
+    const speed = 45;
+
+    function typeWriter(){
+
+        if(i < transmission.length){
+
+            document.getElementById("message").innerHTML += transmission.charAt(i);
+
+            i++;
+
+            setTimeout(typeWriter, speed);
+
+        }else{
+
+            document.getElementById("passwordSection").classList.remove("hidden");
+
+        }
+
+    }
+
+    typeWriter();
+
+}
+
+/* Senha */
+
+function unlockLog(){
+
+    const password = document.getElementById("passwordInput").value.toLowerCase();
+
+    if(
+        password === "leviathan" ||
+        password === "omega13" ||
+        password === "orion"
+    ){
+
+        document.getElementById("secretLog").classList.remove("hidden");
+
+    }else{
+
+        alert("CHAVE INVÁLIDA.");
+
+    }
+
+}
+
+/* Troca o título depois de um tempo */
+
+setTimeout(() => {
+
+    document.title = "SINAL DETECTADO";
+
+}, 12000);
+
+</script>
+
+</body>
+</html>
